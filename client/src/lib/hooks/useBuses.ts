@@ -2,9 +2,6 @@ import { useQuery } from "@tanstack/react-query"
 import agent from "../api/agent";
 
 export const useBuses = () => {
-    //const queryClient = useQueryClient();
-
-
     const { data: buses, isPending } = useQuery({
         queryKey: ['buses'],
         queryFn: async () => {
@@ -13,8 +10,15 @@ export const useBuses = () => {
         }
     });
 
+    const { data: searchedBuses = [] } = useQuery({
+        queryKey: ['searchedBuses'],
+        queryFn: () => [],
+        staleTime: Infinity
+    })
+
     return {
         buses,
-        isPending
+        isPending,
+        searchedBuses
     }
 }
