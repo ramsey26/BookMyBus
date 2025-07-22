@@ -1,12 +1,9 @@
-import { Box, Container, CssBaseline, Typography } from "@mui/material";
-import { useBuses } from "../../lib/hooks/useBuses"
+import { Box, Container, CssBaseline } from "@mui/material";
 import Navbar from "./Navbar";
-import BusDashboard from "../../features/Buses/dashboard/BusDashboard";
 import SearchBar from "./SearchBar";
+import { Outlet } from "react-router";
 
 function App() {
-  const { isPending } = useBuses();
-
   return (
     <>
       <Box sx={{ bgcolor: '#eeeeee', minHeight: '100vh' }}>
@@ -25,13 +22,7 @@ function App() {
           <SearchBar />
         </Box>
         <Container maxWidth='xl' sx={{ mt: 3 }}>
-          {isPending ? (
-            <Typography>Loading...</Typography>
-          ) : (
-            <>
-              <BusDashboard />
-            </>
-          )}
+          <Outlet />
         </Container>
       </Box>
     </>

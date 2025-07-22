@@ -66,15 +66,10 @@ export default function SearchBar() {
         // Set filtered result in React Query cache
         queryClient.setQueryData(['searchedBuses'], filtered);
 
-        if (filtered.length === 0) {
-            console.log("Query removed")
-            queryClient.removeQueries({ queryKey: ['searchedBuses'] });
-        }
-
-        console.log(selectedDate?.format('YYYY-MM-DD'));
-        filtered?.map(bus => {
-            console.log("Map fn" + new Date(bus.travelDate).toISOString().split('T')[0]);
-        })
+        // if (filtered.length === 0) {
+        //     console.log("Query removed")
+        //     queryClient.removeQueries({ queryKey: ['searchedBuses'] });
+        // }
     };
 
     return (

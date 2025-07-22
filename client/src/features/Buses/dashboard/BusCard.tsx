@@ -1,5 +1,6 @@
 import { Box, Button, Card, CardActions, CardContent, Typography } from "@mui/material";
 import EventSeatIcon from '@mui/icons-material/EventSeat';
+import { Link } from "react-router";
 type Props = {
     bus: Bus,
 }
@@ -19,7 +20,7 @@ export default function BusCard({ bus }: Props) {
                     <EventSeatIcon /> {bus.availableSeats} Seats Left
                 </Box>
                 <Box display='flex' gap={3}>
-                    <Button size="medium" variant="contained">Select Seats</Button>
+                    <Button component={Link} to={`/bookingPage/${bus.id}`} size="medium" variant="contained">Select Seats</Button>
                 </Box>
             </CardActions>
         </Card>
