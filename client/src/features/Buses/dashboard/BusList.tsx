@@ -6,10 +6,8 @@ import { useEffect } from "react";
 export default function BusList() {
     const { searchedBuses } = useBuses();
 
-    useEffect(()=>{
-        console.log(searchedBuses);
-        
-    },[searchedBuses]);
+    useEffect(() => {
+    }, [searchedBuses]);
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>

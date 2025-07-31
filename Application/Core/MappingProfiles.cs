@@ -12,6 +12,9 @@ public class MappingProfiles : Profile
         CreateMap<Booking, BookingDto>()
         .ForMember(dest => dest.BusName, opt => opt.MapFrom(src => src.Bus.BusName));
 
-        CreateMap<Passenger, PassengerSummaryDto>();
+        CreateMap<Passenger, PassengerSummaryDto>()
+        .ForMember(dest => dest.PassengerId, opt => opt.MapFrom(src => src.Id));
+
+        CreateMap<PassengerDto, Passenger>();
     }
 }

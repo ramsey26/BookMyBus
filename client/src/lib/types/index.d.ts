@@ -8,9 +8,48 @@ type Bus = {
   availableSeats: number;
   sourceCity: string;
   destinationCity: string;
-  departureTime: string;      // Format: "HH:mm:ss"
-  arrivalTime: string;        // Format: "HH:mm:ss"
-  travelDate: string;         // ISO date string: "YYYY-MM-DDTHH:mm:ss"
+  departureTime: string;
+  arrivalTime: string;
+  travelDate: string;
   farePerSeat: number;
   isActive: boolean;
 };
+
+type PassengerSummaryDto = {
+  seatNumber: string;
+  name: string;
+  age: number;
+  gender: string;
+}
+
+type BookingDto = {
+  id: string;
+  busId: string;
+  busName: string;
+  bookingDate: string;
+  passengers: PassengerSummaryDto[];
+}
+
+type PassengerDto = {
+  seat: string;
+  name: string;
+  age: string;
+  gender: string;
+};
+
+type CreateBookingDto = {
+  userId: string;
+  passengers: PassengerDto[];
+};
+
+// types.ts
+type LoginDto = {
+  email: string;
+  password: string;
+}
+
+type User = {
+  displayName: string;
+  email: string;
+  id: string;
+}

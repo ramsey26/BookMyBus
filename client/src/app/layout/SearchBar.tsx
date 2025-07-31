@@ -8,10 +8,10 @@ import indianCities from '../../data/indianCities';
 import { Button, Stack } from '@mui/material';
 import { useBuses } from '../../lib/hooks/useBuses';
 import { useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DateInput from '../../features/Common/DateInput';
-import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
+import { useSearchParams } from 'react-router';
 
 function ScrollTop(props) {
     const { children, window } = props;
@@ -50,10 +50,17 @@ function ScrollTop(props) {
 }
 
 export default function SearchBar() {
+
+    const [searchParams] = useSearchParams();
+
+    const from = searchParams.get("from") || "";
+    const to = searchParams.get("to") || "";
+    const date = searchParams.get("date") || "";
+
     const { buses } = useBuses();
-    const [fromCity, setFromCity] = useState('');
-    const [toCity, setToCity] = useState('');
-    const [selectedDate, setSelectedDate] = useState<Dayjs | null>(dayjs());
+    const [fromCity, setFromCity] = useState(from);
+    const [toCity, setToCity] = useState(to);
+    const [selectedDate, setSelectedDate] = useState(date ? dayjs(date) : null);
     const queryClient = useQueryClient();
 
     const handleSearch = () => {
@@ -65,12 +72,10 @@ export default function SearchBar() {
         );
         // Set filtered result in React Query cache
         queryClient.setQueryData(['searchedBuses'], filtered);
-
-        // if (filtered.length === 0) {
-        //     console.log("Query removed")
-        //     queryClient.removeQueries({ queryKey: ['searchedBuses'] });
-        // }
     };
+
+    useEffect(() => {
+    }, [fromCity, toCity, selectedDate]);
 
     return (
         <>

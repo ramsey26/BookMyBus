@@ -3,8 +3,9 @@ import App from '../layout/App';
 import HomePage from '../../features/Home/HomePage';
 import BusDashboard from '../../features/Buses/dashboard/BusDashboard';
 import BookingHistory from '../../features/Bookings/BookingHistory';
-import CreateBooking from '../../features/Bookings/CreateBooking';
-import BookingPage from '../../features/Buses/form/BookingPage';
+import BookingPage from '../../features/Bookings/BookingPage';
+import LoginForm from '../../features/Account/LoginForm';
+import RequireAuth from './RequireAuth';
 
 export const router = createBrowserRouter([
     {
@@ -12,21 +13,24 @@ export const router = createBrowserRouter([
         element: <App />,
         children: [
             {
+                element: <RequireAuth />, children: [
+                    {
+                        path: 'bookings', element: <BookingHistory />
+                    },
+                    {
+                        path: 'bookingPage/:id', element: <BookingPage />
+                    }
+                ]
+            },
+            {
                 path: '', element: <HomePage />
             },
             {
                 path: 'buses', element: <BusDashboard />
             },
             {
-                path: 'bookings', element: <BookingHistory />
-            },
-            {
-                path: 'createBooking', element: <CreateBooking />
-            },
-            {
-                path: 'bookingPage/:id', element: <BookingPage />
+                path: 'login', element: <LoginForm />
             }
-
         ]
     }
 ])

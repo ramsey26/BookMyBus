@@ -14,6 +14,7 @@ public class BookingDto
 
 public class PassengerSummaryDto
 {
+    public string PassengerId { get; set; } = string.Empty;
     public string SeatNumber { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
     public int Age { get; set; }

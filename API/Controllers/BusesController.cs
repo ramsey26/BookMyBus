@@ -9,8 +9,9 @@ namespace API.Controllers
     {
         [AllowAnonymous]
         [HttpGet]
-        public async Task<ActionResult<List<Bus>>> GetBuses() {
-            return await mediator.Send(new GetBusList.Query());
+        public async Task<ActionResult<List<Bus>>> GetBuses()
+        {
+            return HandleResult(await mediator.Send(new GetBusList.Query()));
         }
     }
 }
